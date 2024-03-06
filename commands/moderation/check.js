@@ -51,11 +51,11 @@ module.exports = {
             { name: ':triangular_flag_on_post: Strikes: ', value: `${content}`, inline: true },
 			{ name: 'Joined At: ', value: `<t:${parseInt(user.joinedAt / 1000)}:R>`, inline: true },
 			{ name: 'Joined Discord: ', value: `<t:${parseInt(user.user.createdTimestamp / 1000)}:R>`, inline: true },
-			{ name: 'Timed out until: ', value: `${user.communicationDisabledUntil}`, inline: false },
-			{ name: "Hasn't passed membership gate?: ", value: `${user.pending}`, inline: false },
-			{ name: 'Started Server Boosting: ', value: `${user.premiumSince}`, inline: false },
-			{ name: 'Roles: ', value: `${user.roles.cache.map(r => r).join(' ')}`, inline: false }
-        );
+        		{ name: 'Timed out until: ', value: user.communicationDisabledUntil ? `<t:${parseInt(user.communicationDisabledUntil / 1000)}:R>`: "Not timed out", inline: false },
+       	 		{ name: "Hasn't passed membership gate?: ", value: user.pending ? "Yes" : "No", inline: false },
+        		{ name: 'Started Server Boosting: ', value: user.premiumSince ? `<t:${parseInt(user.premiumSince / 1000)}:R>` : "Not boosting", inline: false },
+        		{ name: 'Roles: ', value: `${user.roles.cache.map(r => r).join(' ')}`, inline: false }
+    );
         interaction.reply({ embeds: [embed] }); 
     }
 }
